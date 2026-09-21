@@ -6,7 +6,7 @@
 
 PARS is an evidence-bounded reasoning and verification architecture for research, audits, hard-constrained artifact work, and exact-binary provenance. It preserves hard requirements, explores competing mechanisms, attacks weak assumptions, reconstructs after new evidence, and verifies the final artifact before making a claim.
 
-This repository packages PARS as the installable Codex skill `$apply-pars-deep` and includes the public specification, whitepaper, operational references, prompt protocols, and reusable evidence templates.
+This repository packages PARS as the installable agent skill `apply-pars-deep`, supported on OpenAI Codex and Claude Code, and includes the public specification, whitepaper, operational references, prompt protocols, and reusable evidence templates.
 
 > [!IMPORTANT]
 > **PARS v1.25.0-candidate.6 is experimental and unpromoted.** The candidate source identifies candidate.4 as the current passing candidate pending prospective gates, while its Control Integration section separately preserves PARS v1.24.2 as the authoritative parent for that experimental layer. This repository does not collapse those context-specific lineage statements into a stronger authority claim.
@@ -180,37 +180,71 @@ See [rights-and-reference-use.md](references/rights-and-reference-use.md).
 
 ## Installation
 
-Clone the repository directly into the personal Codex skills directory.
+Clone the repository directly into the host's personal skills directory. `SKILL.md` is identical on every host; only the install path differs.
 
-### Windows PowerShell
+### Codex
+
+Windows PowerShell:
 
 ```powershell
 git clone https://github.com/rookepoole/PARS.git "$env:USERPROFILE\.codex\skills\apply-pars-deep"
 ```
 
-### macOS or Linux
+macOS or Linux:
 
 ```bash
 git clone https://github.com/rookepoole/PARS.git "${CODEX_HOME:-$HOME/.codex}/skills/apply-pars-deep"
 ```
 
-To update an existing Windows installation:
+### Claude Code
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/rookepoole/PARS.git "$env:USERPROFILE\.claude\skills\apply-pars-deep"
+```
+
+macOS or Linux:
+
+```bash
+git clone https://github.com/rookepoole/PARS.git "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills/apply-pars-deep"
+```
+
+Use `.claude/skills/` inside a project directory instead to scope the skill to one repository.
+
+### Updating
+
+Pull with `--ff-only` from whichever directory the skill was installed into.
+
+Codex, Windows PowerShell:
 
 ```powershell
 git -C "$env:USERPROFILE\.codex\skills\apply-pars-deep" pull --ff-only
 ```
 
-To update an existing macOS or Linux installation:
+Codex, macOS or Linux:
 
 ```bash
 git -C "${CODEX_HOME:-$HOME/.codex}/skills/apply-pars-deep" pull --ff-only
+```
+
+Claude Code, Windows PowerShell:
+
+```powershell
+git -C "$env:USERPROFILE\.claude\skills\apply-pars-deep" pull --ff-only
+```
+
+Claude Code, macOS or Linux:
+
+```bash
+git -C "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills/apply-pars-deep" pull --ff-only
 ```
 
 The repository folder may be named `apply-pars-deep`; the skill identity comes from the `name: apply-pars-deep` frontmatter in [SKILL.md](SKILL.md).
 
 ## Using the skill
 
-Invoke it explicitly with `$apply-pars-deep`:
+Invoke it explicitly. Codex uses `$apply-pars-deep`; Claude Code uses `/apply-pars-deep`, and also loads the skill on its own when a request matches the `description` frontmatter. The prompts below are written in the Codex form; substitute the Claude Code form when running there.
 
 ```text
 Use $apply-pars-deep to audit this decision, preserve every hard requirement,
@@ -261,6 +295,7 @@ Copy a template into the experiment output; keep the original unchanged. Record 
 PARS/
 |-- SKILL.md
 |-- agents/
+|   |-- anthropic.yaml
 |   `-- openai.yaml
 |-- assets/
 |   |-- pars-ecs-case-study.md
@@ -301,7 +336,7 @@ The whitepaper does **not** report that prospective comparison as completed. His
 
 ## Validation
 
-Validate the skill structure with Codex's `skill-creator` validator:
+Validate the skill structure with Codex's `skill-creator` validator. This validator is Codex-specific; Claude Code loads `SKILL.md` without a separate validation step.
 
 ### Windows PowerShell
 
@@ -343,7 +378,7 @@ Issues and pull requests are welcome. Changes should preserve the architecture's
 - Add objective or held-out tests for strategy or controller promotion claims.
 - Do not infer BP2 from BP1, BV2 from visual plausibility, or RL3 from prompting or memory.
 - Keep `SKILL.md` procedural and concise; place detailed domain material in `references/`.
-- Update `agents/openai.yaml` when the skill's user-facing identity changes.
+- Update `agents/openai.yaml` and `agents/anthropic.yaml` when the skill's user-facing identity changes.
 
 ## Citation
 
