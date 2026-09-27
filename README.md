@@ -198,6 +198,24 @@ git clone https://github.com/rookepoole/PARS.git "${CODEX_HOME:-$HOME/.codex}/sk
 
 ### Claude Code
 
+Install through the plugin marketplace in Claude Code:
+
+```text
+/plugin marketplace add rookepoole/PARS
+/plugin install pars@pars
+```
+
+Or run the equivalent commands from a shell:
+
+```bash
+claude plugin marketplace add rookepoole/PARS
+claude plugin install pars@pars
+```
+
+Invoke a plugin install with `/pars:apply-pars-deep`.
+
+Alternatively, clone the repository into the skills directory and invoke it with `/apply-pars-deep`.
+
 Windows PowerShell:
 
 ```powershell
@@ -213,6 +231,14 @@ git clone https://github.com/rookepoole/PARS.git "${CLAUDE_CONFIG_DIR:-$HOME/.cl
 Use `.claude/skills/` inside a project directory instead to scope the skill to one repository.
 
 ### Updating
+
+For a plugin install, update the marketplace in Claude Code:
+
+```text
+/plugin marketplace update pars
+```
+
+For a cloned install:
 
 Pull with `--ff-only` from whichever directory the skill was installed into.
 
@@ -293,6 +319,9 @@ Copy a template into the experiment output; keep the original unchanged. Record 
 
 ```text
 PARS/
+|-- .claude-plugin/
+|   |-- plugin.json
+|   `-- marketplace.json
 |-- SKILL.md
 |-- agents/
 |   |-- anthropic.yaml
@@ -378,7 +407,7 @@ Issues and pull requests are welcome. Changes should preserve the architecture's
 - Add objective or held-out tests for strategy or controller promotion claims.
 - Do not infer BP2 from BP1, BV2 from visual plausibility, or RL3 from prompting or memory.
 - Keep `SKILL.md` procedural and concise; place detailed domain material in `references/`.
-- Update `agents/openai.yaml` and `agents/anthropic.yaml` when the skill's user-facing identity changes.
+- Update `agents/openai.yaml` and `agents/anthropic.yaml` when the skill's user-facing identity changes. Update the `version` in `.claude-plugin/plugin.json` when the PARS candidate version changes.
 
 ## Citation
 
