@@ -348,15 +348,12 @@ Copy a template into the experiment output; keep the original unchanged. Record 
 
 ```text
 PARS/
-|-- .claude-plugin/
-|   |-- plugin.json
-|   `-- marketplace.json
-|-- commands/
-|   `-- apply.md
 |-- SKILL.md
 |-- agents/
 |   |-- anthropic.yaml
 |   `-- openai.yaml
+|-- commands/
+|   `-- apply.md
 |-- assets/
 |   |-- pars-ecs-case-study.md
 |   |-- pars-febp-benchmark-preregistration.md
@@ -374,6 +371,9 @@ PARS/
 |-- README.md
 |-- LICENSE
 |-- .gitattributes
+|-- .claude-plugin/
+|   |-- plugin.json
+|   `-- marketplace.json
 `-- .gitignore
 ```
 
