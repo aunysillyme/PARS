@@ -285,9 +285,15 @@
             <div class="terminal-prompt"><span>invoke</span><strong>$apply-pars-deep</strong></div>
           </div>
           <div class="terminal">
+            <div class="terminal-head"><span>CLAUDE CODE / PLUGIN</span><button data-copy="#install-command-claude-plugin">COPY</button></div>
+            <pre id="install-command-claude-plugin"><code>/plugin marketplace add rookepoole/PARS
+/plugin install pars@pars</code></pre>
+            <div class="terminal-prompt"><span>invoke</span><strong>/pars:apply-pars-deep</strong></div>
+          </div>
+          <div class="terminal">
             <div class="terminal-head"><span>CLAUDE CODE / MACOS OR LINUX</span><button data-copy="#install-command-claude">COPY</button></div>
             <pre id="install-command-claude"><code>git clone https://github.com/rookepoole/PARS.git "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills/apply-pars-deep"</code></pre>
-            <p class="terminal-note">Default directory: <code>~/.claude/skills/apply-pars-deep</code>.</p>
+            <p class="terminal-note">Alternative: clone into the skills directory. Default directory: <code>~/.claude/skills/apply-pars-deep</code>.</p>
             <div class="terminal-prompt"><span>invoke</span><strong>/apply-pars-deep</strong></div>
           </div>
         </div>
