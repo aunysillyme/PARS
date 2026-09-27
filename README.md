@@ -212,7 +212,9 @@ claude plugin marketplace add rookepoole/PARS
 claude plugin install pars@pars
 ```
 
-Invoke a plugin install with `/pars:apply-pars-deep`.
+The install is user-wide by default. Add `--scope project` (shared with a repository through `.claude/settings.json`) or `--scope local` (this checkout only) to `claude plugin install` to scope it to one repository.
+
+Invoke a plugin install with `/pars:apply-pars-deep`, or start from `/pars:apply <task>`, which fills in the same default prompt Codex offers through `agents/openai.yaml`.
 
 Alternatively, clone the repository into the skills directory and invoke it with `/apply-pars-deep`.
 
@@ -232,10 +234,11 @@ Use `.claude/skills/` inside a project directory instead to scope the skill to o
 
 ### Updating
 
-For a plugin install, update the marketplace in Claude Code:
+For a plugin install, refresh the marketplace, then update the plugin, then restart Claude Code to load the new version:
 
 ```text
 /plugin marketplace update pars
+/plugin update pars@pars
 ```
 
 For a cloned install:
@@ -348,6 +351,8 @@ PARS/
 |-- .claude-plugin/
 |   |-- plugin.json
 |   `-- marketplace.json
+|-- commands/
+|   `-- apply.md
 |-- SKILL.md
 |-- agents/
 |   |-- anthropic.yaml
@@ -414,6 +419,8 @@ From the repository root, validate `.claude-plugin/marketplace.json` and `.claud
 ```bash
 claude plugin validate --strict .
 ```
+
+This checks the plugin manifests only. `SKILL.md` frontmatter is the same file on both hosts, so the Codex validator above covers it for Claude Code as well.
 
 Before publishing a change:
 
